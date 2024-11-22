@@ -1,11 +1,14 @@
 from random import randint, choices
 import requests
 
+pokemons = {} # Глобальный словарь
+
 class Pokemon:
     rarities = ["обычный", "необычный", "редкий", "эпический", "легендарный", "чемпион"]
     rarity_weights = [50, 30, 15, 4, 0.9, 0.1]
 
     def __init__(self, pokemon_trainer):
+        pokemons[pokemon_trainer] = self # Сохраняем в глобальном словаре
         self.pokemon_trainer = pokemon_trainer
         self.pokemon_number = randint(1, 1000)
         self.img = self.get_img()
