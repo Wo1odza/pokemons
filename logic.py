@@ -25,7 +25,7 @@ class Pokemon:
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
 
     
-    # Метод для получения имени покемона через API
+    # sigma, Метод для получения имени покемона через API
     def get_name(self):
         url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}'
         response = requests.get(url)
