@@ -1,18 +1,18 @@
-from random import randint
+from random import randint, choices
 import requests
 
 class Pokemon:
-    pokemons = {}
-    # Инициализация объекта (конструктор)
+    rarities = ["обычный", "необычный", "редкий", "эпический", "легендарный", "чемпион"]
+    rarity_weights = [50, 30, 15, 4, 0.9, 0.1]
+
     def __init__(self, pokemon_trainer):
-
-        self.pokemon_trainer = pokemon_trainer   
-
-        self.pokemon_number = randint(1,1000)
+        self.pokemon_trainer = pokemon_trainer
+        self.pokemon_number = randint(1, 1000)
         self.img = self.get_img()
         self.name = self.get_name()
-
-        Pokemon.pokemons[pokemon_trainer] = self
+        self.rarity = choices(self.rarities, weights=self.rarity_weights)[0]
+        self.pokemons = {} # Словарь создается для каждого объекта
+        self.pokemons[pokemon_trainer] = self
 
         # Метод для получения картинки покемона через API
     def get_img(self):
