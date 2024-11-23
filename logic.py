@@ -4,9 +4,9 @@ import requests
 class Pokemon:
     pokemons = {} # { username : pokemon}
     # Инициализация объекта (конструктор)
-    def init(self, pokemon_trainer):
+    def __init__(self, pokemon_trainer):
 
-        self.pokemon_trainer = pokemon_trainer
+        self.pokemon_trainer = pokemon_trainer   
 
         self.pokemon_number = randint(1,1000)
         self.img = self.get_img()
@@ -26,7 +26,7 @@ class Pokemon:
             return (data['sprites']["other"]['official-artwork']["front_default"])
         else:
             return "https://static.wikia.nocookie.net/anime-characters-fight/images/7/77/Pikachu.png/revision/latest/scale-to-width-down/700?cb=20181021155144&path-prefix=ru"
-
+    
     # Метод для получения имени покемона через API
     def get_name(self):
         url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}'
@@ -37,6 +37,7 @@ class Pokemon:
         else:
             return "Pikachu"
 
+
     # Метод класса для получения информации
     def info(self):
         return f"""Имя твоего покеомона: {self.name}
@@ -46,7 +47,7 @@ Cила покемона: {self.power}
     # Метод класса для получения картинки покемона
     def show_img(self):
         return self.img
-
+    
     def attack(self, enemy):
         if isinstance(enemy, Wizard):
             chance = randint(1,5)
@@ -61,9 +62,8 @@ Cила покемона: {self.power}
             return f"Победа @{self.pokemon_trainer} над @{enemy.pokemon_trainer}! "
 
 class Wizard(Pokemon):
+  pass
 
-    def info(self): # доп. задание
-        return "У тебя покемон-волшебник \n\n" + super().info()
 
 class Fighter(Pokemon):
     def attack(self, enemy):
@@ -72,6 +72,3 @@ class Fighter(Pokemon):
         result = super().attack(enemy)
         self.power -= super_power
         return result + f"\nБоец применил супер-атаку силой:{super_power} "
-
-    def info(self): # доп. задание
-        return "У тебя покемон-боец \n\n" + super().info()
