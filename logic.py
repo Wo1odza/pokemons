@@ -5,7 +5,7 @@ pokemons = {} # Глобальный словарь
 
 class Pokemon:
     rarities = ["обычный", "необычный", "редкий", "эпический", "легендарный", "чемпион"]
-    rarity_weights = [50, 30, 15, 4, 0.9, 0.1]
+    rarity_weights = [100, 60, 30, 8, 1.8, 0.2]
 
     def __init__(self, pokemon_trainer):
         pokemons[pokemon_trainer] = self # Сохраняем в глобальном словаре
