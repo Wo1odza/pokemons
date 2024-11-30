@@ -12,7 +12,7 @@ class Pokemon:
         self.name = self.get_name()
         self.power = randint(30, 60)
         self.hp = randint(200, 400)
-        self.last_feed_time = datetime.datetime.now() # Добавление атрибута
+        self.last_feed_time = datetime.now() # Добавление атрибута
         Pokemon.pokemons[pokemon_trainer] = self
 
     def get_img(self):

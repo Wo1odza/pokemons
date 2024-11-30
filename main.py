@@ -40,5 +40,20 @@ def info(message):
             pok = Pokemon.pokemons[message.from_user.username]
             bot.send_message(message.chat.id, pok.info())
 
+@bot.message_handler(commands=['feed'])
+def feed_pokemon(message):
+    username = message.from_user.username
+    if username in Pokemon.pokemons:
+        pokemon = Pokemon.pokemons[username]
+        if isinstance(pokemon, Wizard):
+            result = pokemon.feed() # Использует метод feed из Wizard
+        elif isinstance(pokemon, Fighter):
+            result = pokemon.feed() # Использует метод feed из Fighter
+        else:
+            result = pokemon.feed() # Использует метод feed из Pokemon
+        bot.send_message(message.chat.id, result)
+    else:
+        bot.send_message(message.chat.id, "У вас нет покемона!")
+
 
 bot.infinity_polling(none_stop=True)
